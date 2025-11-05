@@ -37,16 +37,59 @@ export class Aplicacao {
           let ano = Number(anoTexto);
           let paginas = Number(this.io.pedirTexto("Número de páginas:"));
 
+          //Verifica se existe titulo e autor
           if (!titulo || !autor) {
             alert("Título e autor são obrigatórios!");
             break;
           }
 
+          //verifica se o titulo é valido
+          if (titulo === '') {
+            alert("Digite um título válido, tente novamente!");
+            break;
+          }
+          
+          //verifica se o titulo tem numeros, se sim não pode
+          let temNumeroTitulo : boolean = false;
+          for(let i =0; i<titulo.length; i++){
+            let caractere = titulo[i];
+            if(!isNaN(Number(caractere))){
+              temNumeroTitulo = true;
+              break;
+            }
+          }
+          if(temNumeroTitulo){
+            alert("O campo titulo não pode conter números, tente novamente!");
+            break;
+          }
+
+          //verifica se o autor é valido
+          if (autor === '') {
+            alert("Digite um autor válido, tente novamente!");
+            break;
+          }
+          
+          //verifica se o autor tem numeros, se sim não pode
+          let temNumeroAutor : boolean = false;
+          for(let i =0; i<autor.length; i++){
+            let caractere = autor[i];
+            if(!isNaN(Number(caractere))){
+              temNumeroAutor = true;
+              break;
+            }
+          }
+          if(temNumeroAutor){
+            alert("O campo autor não pode conter números, tente novamente!");
+            break;
+          }
+
+          //verifica se o ano possui 4 augarismos se sim ok se não, não pode
           if (anoTexto.length > 4 || anoTexto.length < 4) {
             alert("O ano deve ter no máximo 4 algarismos, tente novamente!");
             break;
           }
 
+          //verifica se ano e paginas são numeros e se não são zero ou numeros negativos
           if (isNaN(ano) || isNaN(paginas) || ano <= 0 || paginas <= 0) {
             alert("Digite apenas números válidos(inteiros) para ano e páginas, tente novamente!");
             break;
